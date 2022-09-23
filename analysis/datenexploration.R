@@ -1,20 +1,20 @@
 
-# 6.4 Setup ---------------------------------------------------------------
+# 6.5 Setup ---------------------------------------------------------------
 
-# 6.4.1 Skimr laden
+# 6.5.1 Skimr laden
 # Lade das Paket skimr
 library(skimr)
 
 
-# 6.4.2 Datensatz laden
-# * Lade den Datensatz data/export/replication_cleaned.csv
+# 6.5.2 Datensatz laden
+# * Lade den Datensatz data/cleaned/replication_cleaned.csv
 # * Speichere den Datensatz in der Variable buttrick_data
-buttrick_data <- read_csv("data/export/replication_cleaned.csv")
+buttrick_data <- read_csv("data/cleaned/replication_cleaned.csv")
 
 
-# 6.4.3 Faktoren releveln
+# 6.5.3 Faktoren releveln
 # * Konvertiere die Variable test in einen Faktor und
-#   speichere den Leveln folgende Reihenfolge: 
+#   gib den Leveln folgende Reihenfolge: 
 #   Pretest -> Posttest
 # * Speichere den Datensatz in der Variable buttrick_data
 buttrick_data <- buttrick_data %>% 
@@ -23,9 +23,9 @@ buttrick_data <- buttrick_data %>%
   )
 
 
-# 6.5 Deskriptive Statistik -----------------------------------------------
+# 6.6 Deskriptive Statistik -----------------------------------------------
 
-# 6.5.1 M und SD berechnen
+# 6.6.1 M und SD berechnen
 # * Berechne die Mittelwerte und Standardabweichungen der Variable
 #   accuracy für die beiden Gruppen und die Testzeitpunkte
 # * Verwende mindestens zwei Methoden, um zu den Ergebnissen zu kommen
@@ -54,11 +54,11 @@ buttrick_data %>%
   )
 
 
-# 6.6 Datenvisualisierung --------------------------------------------------
+# 6.7 Datenvisualisierung --------------------------------------------------
 
-# 6.6.1 Streudiagramm erstellen
+# 6.7.1 Streudiagramm erstellen
 # * Erstelle ein Streudiagramm des Pre- und Posttests
-# * Bringe die Variable test und accuracy in in weites Format
+# * Bringe die Variablen test und accuracy in ein weites Format
 #   mit pivot_wider
 # * Stelle auf der X-Achse den Pretest dar
 # * Stelle auf der Y-Achse den Posttest dar
@@ -73,8 +73,14 @@ buttrick_data %>%
   geom_point() +
   facet_wrap(vars(pressure))
 
+# 6.7.2 Visualisierung speichern
+# Speichere die Visualisierung im R-Projekt ab unter dem Pfad
+# images/streudiagramm_test_accuracy.png
+ggsave("images/streudiagramm_test_accuracy.png",
+       width = 8, height = 5, dpi = 300)
 
-# 6.6.2 Histogramme darstellen
+
+# 6.7.3 Histogramme darstellen
 # * Erstelle vier Histogramme der Variable accuracy mit facet_grid
 # * In den Spalten soll die Variable test und in den 
 #   Reihen die Variable condition dargestellt sein
@@ -93,12 +99,18 @@ buttrick_data %>%
     legend.position = "bottom"
   )
 
+# 6.7.4 Visualisierung speichern
+# Speichere die Visualisierung im R-Projekt ab unter dem Pfad
+# images/histogramme_test_accuracy.png
+ggsave("images/histogramme_test_accuracy.png",
+       width = 8, height = 5, dpi = 300)
 
-# 6.6.3 Boxplots darstellen
+
+# 6.7.5 Boxplots darstellen
 # * Erstelle einen Boxplot
 # * Stelle auf der X-Achse den Testzeitpunkt dar
 # * Stelle auf der Y-Achse die Akkuratheit dar
-# * Die Experimentallgruppen (condition) sollten unterschiedliche Füllfarben
+# * Die Experimentalgruppen (condition) sollten unterschiedliche Füllfarben
 #   haben und als Boxplots dargestellt werden
 # * Vervollständige den Code
 buttrick_data %>% 
@@ -114,12 +126,18 @@ buttrick_data %>%
     legend.position = "bottom"
   )
 
+# 6.7.6 Visualisierung speichern
+# Speichere die Visualisierung im R-Projekt ab unter dem Pfad
+# images/boxplots_test_accuracy.png
+ggsave("images/boxplots_test_accuracy.png",
+       width = 8, height = 5, dpi = 300)
 
-# 6.6.4 Mittelwerte als Liniendiagramm visualisieren
-# * Verwende die berechneten Mittelwerte als Datensatz für die Visualisierung
+
+# 6.7.7 Mittelwerte als Liniendiagramm visualisieren
+# * Verwende die vorher berechneten Mittelwerte als Daten für die Visualisierung
 # * Stelle auf der X-Achse den Testzeitpunkt dar
 # * Stelle auf der Y-Achse die Akkuratheit dar
-# * Die Experimentallgruppen (condition) sollten unterschiedliche Farben haben 
+# * Die Experimentalgruppen (condition) sollten unterschiedliche Farben haben 
 #   und als Linien dargestellt werden
 # * Die Variable pressure sollte durch ein facet_wrap unterteilt werden
 # * Vervollständige den Code
@@ -147,3 +165,9 @@ buttrick_data %>%
   theme(
     legend.position = "bottom"
   )
+
+# 6.7.8 Visualisierung speichern
+# Speichere die Visualisierung im R-Projekt ab unter dem Pfad
+# images/liniendiagramm_test_accuracy.png
+ggsave("images/liniendiagramm_test_accuracy.png",
+       width = 8, height = 5, dpi = 300)
